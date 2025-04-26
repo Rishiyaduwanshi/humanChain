@@ -5,10 +5,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "format": "prettier --write .",
     "seed": "node --env-file=.env.dev seeders/incident.seed.js",
     "start": "node server.js",
-    "dev": "npm run format && node --watch --env-file=.env.dev server.js",
+    "dev": "node --watch --env-file=.env.dev server.js",
     "pro": "node --env-file=.env server.js"
   },
   "keywords": [],
@@ -24,8 +23,5 @@
     "mongoose": "^8.13.2",
     "morgan": "^1.10.0",
     "winston": "^3.17.0"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3"
   }
 }

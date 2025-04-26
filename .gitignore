@@ -18,5 +18,6 @@ lerna-debug.log*
 
 .env
 .dev.env
+.env.dev
 demo
 

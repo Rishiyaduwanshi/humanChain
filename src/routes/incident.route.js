@@ -1,8 +1,10 @@
 import { Router } from "express";
-import {getIncidents,} from "../controllers/incident.controller.js";
+import {createIncident, getIncidents,} from "../controllers/incident.controller.js";
  
 const router = Router();
 
-router.get("/incidents", getIncidents);
+router.route('/incidents')
+.get(getIncidents)
+.post(createIncident)
 
 export default router;

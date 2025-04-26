@@ -22,20 +22,6 @@ const logger = createLogger({
     })
   ),
   transports: [
-    new transports.Console({
-      format: format.combine(
-        format.colorize(),
-        format.printf(({ timestamp, level, message }) => {
-          const colorLevel =
-            level === 'error'
-              ? chalk.red(level)
-              : level === 'warn'
-                ? chalk.yellow(level)
-                : chalk.green(level);
-          return `${timestamp} [${colorLevel}]: ${message}`;
-        })
-      ),
-    }),
     new transports.File({
       filename: 'logs/error.log',
       format: format.combine(
