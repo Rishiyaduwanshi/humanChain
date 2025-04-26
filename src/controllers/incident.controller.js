@@ -46,8 +46,7 @@ export const getIncidentById = async (req, res, next) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new AppError({ message: 'Invalid Incident ID format', statusCode: 400 });
     }
-    const found = await Incident.find({ _id: id });
-    console.log(found);
+    const found = await Incident.findById(id);
     if (!found) throw new AppError({ message: 'incident not found', statusCode: 404 });
     appResponse(res, { message: "Incident found", data: found })
   } catch (err) {

@@ -21,10 +21,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(appLogger);
 app.use(rateLimit(GLOBAL_RATE_LIMIT_CONFIG));
 app.use(rateLimit(PER_IP_RATE_LIMIT_CONFIG));
 app.use(express.urlencoded({ extended: true }));
-app.use(appLogger);
 
 import incidentRoute from "./src/routes/incident.route.js";
 app.use(`/api/v${version}`, incidentRoute);
