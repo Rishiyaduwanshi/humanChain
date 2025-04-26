@@ -55,3 +55,16 @@ export const getIncidentById = async (req, res, next) => {
   }
 };
 
+export const deleteIncident = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new AppError({ message: 'Invalid Incident ID format', statusCode: 400 });
+    }
+    const deleted = await Incident.findByIdAndDelete({ _id: id });
+    if (!deleted) throw new AppError({ message: 'incident not found', statusCode:404 });
+    appResponse(res, {message : "Incident deleted successfuly", data : [deleted]})
+  } catch (err) {
+    next(err)
+  }
+}
