@@ -2,6 +2,7 @@ import Incident from '../models/incident.model.js';
 import appResponse from '../utils/appResponse.js';
 import { AppError } from '../utils/appError.js';
 import validateIncident from '../validations/incident.validate.js';
+import mongoose from 'mongoose';
 export const getIncidents = async (req, res, next) => {
   try {
     const incidents = await Incident.find();
@@ -42,6 +43,9 @@ export const createIncident = async (req, res, next) => {
 export const getIncidentById = async (req, res, next) => {
   try {
     const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new AppError({ message: 'Invalid Incident ID format', statusCode: 400 });
+    }
     const found = await Incident.find({ _id: id });
     console.log(found);
     if (!found) throw new AppError({ message: 'incident not found', statusCode:404 });
