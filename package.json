@@ -4,7 +4,10 @@
   "description": "",
   "main": "server.js",
   "type": "module",
-  "scripts": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishiyaduwanshi/humanChain.git"
+  },  "scripts": {
     "seed": "node --env-file=.env.dev seeders/incident.seed.js",
     "start": "node server.js",
     "dev": "node --watch --env-file=.env.dev server.js",

@@ -17,10 +17,22 @@ import cors from "cors";
 
 const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
 const version = packageJson.version.split(".")[0];
-const app = express();
+const app = express(); 
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({
+  strict: true, 
+  verify: (req, res, buf) => {
+    try {
+      JSON.parse(buf);
+    } catch (err) {
+      throw new AppError({
+        message: 'Invalid JSON format.',
+        statusCode: 400,
+      });
+    }
+  }
+}));
 app.use(appLogger);
 app.use(rateLimit(GLOBAL_RATE_LIMIT_CONFIG));
 app.use(rateLimit(PER_IP_RATE_LIMIT_CONFIG));
