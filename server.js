@@ -85,10 +85,12 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
   console.log(
     `Server is running in ${chalk.yellow(
       NODE_ENV
     )} mode at http://localhost:${chalk.yellow(PORT)}`
   );
 });
+
+export default app;

@@ -3,9 +3,9 @@ import appResponse from '../utils/appResponse.js';
 import { AppError } from '../utils/appError.js';
 import validateIncident from '../validations/incident.validate.js';
 import mongoose from 'mongoose';
-export const getIncidents = async (req, res, next) => {
+export const getIncidents = async (req, res, next, Model = Incident) => {
   try {
-    const incidents = await Incident.find();
+    const incidents = await Model.find();
     appResponse(res, {
       data: incidents,
       message: 'Incidents fetched successfully',
@@ -19,8 +19,6 @@ export const createIncident = async (req, res, next) => {
   try {
     const data = req.body;
     const result = validateIncident(data);
-    console.log(result);
-    console.log(result.length);
     if (result.length > 0) {
       throw new AppError({
         message: 'Validation failed',
