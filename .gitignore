@@ -20,4 +20,5 @@ lerna-debug.log*
 .dev.env
 .env.dev
 demo
+coverage
 
